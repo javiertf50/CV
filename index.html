@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Portafolio Profesional</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+        
+        :root {
+            --primary: #c92b0f;
+            --secondary: #188fbe;
+            --accent: #00ccff;
+            --dark: #1f2937;
+            --light: #f9fafb;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--light);
+            color: var(--dark);
+            transition: all 0.3s ease;
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+        }
+        
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .file-upload {
+            border: 2px dashed #CBD5E0;
+            transition: all 0.3s ease;
+        }
+        
+        .file-upload:hover {
+            border-color: var(--primary);
+        }
+        
+        .file-upload.dragover {
+            background-color: #EBF8FF;
+            border-color: var(--primary);
+        }
+        
+        #cvPreview {
+            display: none;
+        }
+        
+        .skill-badge {
+            background-color: #E0E7FF;
+            color: var(--primary);
+        }
+    </style>
+</head>
+<body class="min-h-screen">
+    <!-- Navbar -->
+    <nav class="bg-white shadow-lg sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <a href="#" class="text-xl font-bold text-gray-900">Mi<span class="text-blue-600"> Portafolio</span></a>
+                </div>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#inicio" class="text-gray-700 hover:text-blue-600 px-3 py-2 text-sm font-medium">Inicio</a>
+                    <a href="#sobre-mi" class="text-gray-700 hover:text-blue-600 px-3 py-2 text-sm font-medium">Sobre mí</a>
+                    <a href="#proyectos" class="text-gray-700 hover:text-blue-600 px-3 py-2 text-sm font-medium">Proyectos</a>
+                    <a href="#cv" class="text-gray-700 hover:text-blue-600 px-3 py-2 text-sm font-medium">Curriculum</a>
+                    <a href="#contacto" class="bg-blue-600 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-blue-700">Contacto</a>
+                </div>
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-button" class="text-gray-500 hover:text-gray-900">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile menu -->
+        <div id="mobile-menu" class="hidden md:hidden">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="#inicio" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-blue-600">Inicio</a>
+                <a href="#sobre-mi" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-blue-600">Sobre mí</a>
+                <a href="#proyectos" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-blue-600">Proyectos</a>
+                <a href="#cv" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-blue-600">Curriculum</a>
+                <a href="#contacto" class="block px-3 py-2 rounded-md text-base font-medium text-white bg-blue-600 hover:bg-blue-700">Contacto</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="inicio" class="gradient-bg text-white py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="md:flex items-center justify-between">
+                <div class="md:w-1/2 mb-10 md:mb-0">
+                    <h1 class="text-4xl md:text-5xl font-bold mb-4">Hola, soy <span class="text-yellow-300">Javier</span></h1>
+                    <h2 class="text-2xl md:text-3xl font-semibold mb-6">Desarrollador Full Stack</h2>
+                    <p class="text-lg mb-8 text-gray-100">Estudiante de SENATI, enfocado en desarrollar soluciones técnicas innovadoras.</p>
+                    <div class="flex space-x-4">
+                        <a href="#contacto" class="bg-white text-blue-600 px-6 py-3 rounded-md font-medium hover:bg-gray-100">Contactar</a>
+                        <a href="#cv" class="border-2 border-white text-white px-6 py-3 rounded-md font-medium hover:bg-white hover:text-blue-600">Ver CV</a>
+                    </div>
+                </div>
+                <div class="md:w-1/2 flex justify-center">
+                    <img src="img/jv-yo.jpeg"  class="rounded-full w-64 h-64 md:w-80 md:h-80 object-cover border-4 border-white shadow-lg">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="sobre-mi" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold text-gray-900 mb-4">Sobre <span class="text-blue-600">Mí</span></h2>
+                <div class="w-20 h-1 bg-blue-600 mx-auto"></div>
+            </div>
+            <div class="md:flex items-center">
+                <div class="md:w-1/3 mb-10 md:mb-0 md:pr-8 flex justify-center">
+                    <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/15121219-3742-4091-a7d0-6794b3640320.png" alt="Fotografía de Javier trabajando en un ordenador portátil en una oficina moderna" class="rounded-lg shadow-lg w-full max-w-md">
+                </div>
+                <div class="md:w-2/3">
+                    <h3 class="text-2xl font-semibold text-gray-800 mb-6">Experiencia Profesional</h3>
+                    <p class="text-gray-600 mb-6">
+        Estudiante apasionado de tecnología y programación, enfocado en superar mis límites cada día. Camino para convertirme en uno de los mejores, aprendiendo de cada línea de código y cada desafío."     </p>
+                    
+                    <h4 class="text-xl font-semibold text-gray-800 mb-4">Mis habilidades técnicas:</h4>
+                    <div class="flex flex-wrap gap-2 mb-8">
+                        <span class="skill-badge px-4 py-2 rounded-full text-sm font-medium">JavaScript</span>
+                        <span class="skill-badge px-4 py-2 rounded-full text-sm font-medium">C#</span>
+                        <span class="skill-badge px-4 py-2 rounded-full text-sm font-medium">PHP</span>
+                        <span class="skill-badge px-4 py-2 rounded-full text-sm font-medium">HTML5/CSS3</span>
+                        <span class="skill-badge px-4 py-2 rounded-full text-sm font-medium">SQL Serve/MYsqL</span>
+                        <span class="skill-badge px-4 py-2 rounded-full text-sm font-medium">python</span>
+                        <span class="skill-badge px-4 py-2 rounded-full text-sm font-medium">Git Hub</span>
+                        <span class="skill-badge px-4 py-2 rounded-full text-sm font-medium">Microsoft Office 365</span>
+                    </div>
+                    
+                    <div class="space-y-4">
+                        <div>
+                            <h4 class="text-lg font-semibold text-gray-800">Educación:</h4>
+                            <p class="text-gray-600">Estudiante de senati 6to semestre - (en curso)</p>
+                        </div>
+                  <!---      <div>
+                            <h4 class="text-lg font-semibold text-gray-800">Certificaciones:</h4>
+                            <p class="text-gray-600">Certificado en Desarrollo Web Avanzado - Plataforma ABC (2020)</p>
+                        </div> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="proyectos" class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold text-gray-900 mb-4">Mis <span class="text-blue-600">Proyectos</span></h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">Una selección de los proyectos más relevantes que he desarrollado, demostrando mis habilidades y experiencia.</p>
+                <div class="w-20 h-1 bg-blue-600 mx-auto"></div>
+            </div>
+           
+        
+            <!-- Project Cards -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+
+
+
+                <!-- Project 1 -->
+              <!-- Project 1 -->
+<div class="project-card bg-white rounded-lg shadow-md overflow-hidden transition-all duration-300">
+    <div class="h-48 overflow-hidden">
+        <img src="img/zonegamer.JPG" 
+             alt="Captura de pantalla de la aplicación E-commerce con interfaz moderna mostrando productos" 
+             class="w-full h-full object-cover">
+    </div>
+    <div class="p-6">
+        <h3 class="text-xl font-semibold text-gray-800 mb-2">Proyecto pagina web de ventas de video juegos </h3>
+        <p class="text-gray-600 mb-4">una tienda virtual de video juegos donde sera mas que todo para vender video juegos o obejos para poder jugarlos (aun no esta en beta)</p>
+        <div class="flex flex-wrap gap-2 mb-4">
+            <span class="bg-blue-100 text-blue-800 text-xs px-3 py-1 rounded-full">Html</span>
+            <span class="bg-orange-100 text-black-800 text-xs px-3 py-1 rounded-full">SqLDB</span>
+           <span class="bg-red-100 text-purple-800 text-xs px-3 py-1 rounded-full">github</span>
+            <span class="bg-green-100 text-green-800 text-xs px-3 py-1 rounded-full">java</span>
+        </div>
+        <div class="flex space-x-3">
+            <a href="https://javiertf50.github.io/zone-gamer/" 
+               target="_blank" 
+               class="text-blue-600 hover:text-blue-800 text-sm font-medium">
+               Ver Demo
+            </a>
+            <a href="https://github.com/javiertf50/zone-gamer" 
+               target="_blank" 
+               class="text-gray-500 hover:text-gray-700 text-sm font-medium">
+               Código Fuente
+            </a>
+        </div>
+    </div>
+</div>
+                
+
+
+                <!-- Project 2 -->
+                
+<div class="project-card bg-white rounded-lg shadow-md overflow-hidden transition-all duration-300">
+    <div class="h-48 overflow-hidden">
+        <img src="img/plantilla_web.png" 
+             alt="Captura de pantalla de la aplicación E-commerce con interfaz moderna mostrando productos" 
+             class="w-full h-full object-cover">
+    </div>
+    <div class="p-6">
+        <h3 class="text-xl font-semibold text-gray-800 mb-2">Plataforma E-commerce</h3>
+        <p class="text-gray-600 mb-4">plantilla de pagina web, donde el usuario podra interactuar con las acciones que se puedan ver</p>
+        <div class="flex flex-wrap gap-2 mb-4">
+            <span class="bg-blue-100 text-blue-800 text-xs px-3 py-1 rounded-full">Html</span>
+            <span class="bg-green-100 text-green-800 text-xs px-3 py-1 rounded-full">java</span>
+            <span class="bg-red-100 text-purple-800 text-xs px-3 py-1 rounded-full">github</span>
+        </div>
+        <div class="flex space-x-3">
+            <a href="https://javiertf50.github.io/pagina-web-plantilla/" 
+               target="_blank" 
+               class="text-blue-600 hover:text-blue-800 text-sm font-medium">
+               Ver Demo
+            </a>
+            <a href="https://github.com/javiertf50/pagina-web-plantilla" 
+               target="_blank" 
+               class="text-gray-500 hover:text-gray-700 text-sm font-medium">
+               Código Fuente
+            </a>
+        </div>
+    </div>
+</div>
+                
+
+
+                <!-- Project 3 -->
+             
+<div class="project-card bg-white rounded-lg shadow-md overflow-hidden transition-all duration-300">
+    <div class="h-48 overflow-hidden">
+        <img src="img/fut.png" 
+             alt="Captura de pantalla de la aplicación fut con interfaz moderna mostrando productos" 
+             class="w-full h-full object-cover">
+    </div>
+    <div class="p-6">
+        <h3 class="text-xl font-semibold text-gray-800 mb-2">Plataforma E-commerce</h3>
+        <p class="text-gray-600 mb-4">un sistema de mas que todo habla sobre el tema de futbol de psg vs inter de milan, donde tiene incluido enlaces de youtube.</p>
+        <div class="flex flex-wrap gap-2 mb-4">
+            <span class="bg-blue-100 text-blue-800 text-xs px-3 py-1 rounded-full">Html</span>
+            <span class="bg-green-100 text-green-800 text-xs px-3 py-1 rounded-full">github</span>
+            <span class="bg-purple-100 text-purple-800 text-xs px-3 py-1 rounded-full">info</span>
+        </div>
+        <div class="flex space-x-3">
+            <a href="https://javiertf50.github.io/prueba_web/" 
+               target="_blank" 
+               class="text-blue-600 hover:text-blue-800 text-sm font-medium">
+               Ver Demo
+            </a>
+            <a href="https://github.com/javiertf50/prueba_web" 
+               target="_blank" 
+               class="text-gray-500 hover:text-gray-700 text-sm font-medium">
+               Código Fuente
+            </a>
+        </div>
+    </div>
+</div>
+
+
+
+              <!-- Project 4 -->
+             
+<div class="project-card bg-white rounded-lg shadow-md overflow-hidden transition-all duration-300">
+    <div class="h-48 overflow-hidden">
+        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/08591fa6-8c60-4a14-bbd5-48826d1bd90e.png" 
+             alt="Captura de pantalla de la aplicación E-commerce con interfaz moderna mostrando productos" 
+             class="w-full h-full object-cover">
+    </div>
+    <div class="p-6">
+        <h3 class="text-xl font-semibold text-gray-800 mb-2"> algunos proyectos de php y python</h3>
+        <p class="text-gray-600 mb-4">sistemas completos de php y python para descargar.</p>
+        <div class="flex flex-wrap gap-2 mb-4">
+            <span class="bg-blue-100 text-blue-800 text-xs px-3 py-1 rounded-full">React</span>
+            <span class="bg-green-100 text-green-800 text-xs px-3 py-1 rounded-full">Node.js</span>
+            <span class="bg-purple-100 text-purple-800 text-xs px-3 py-1 rounded-full">MongoDB</span>
+        </div>
+        <div class="flex space-x-3">
+            <a href="https://mega.nz/folder/TqoTCYIJ#e87yFIIVabnSmAqydWcWtw" 
+               target="_blank" 
+               class="text-blue-600 hover:text-blue-800 text-sm font-medium">
+              ver
+            </a>
+
+        </div>
+    </div>
+</div>
+
+
+
+    </section>
+
+    <!-- CV Upload Section -->
+    <section id="cv" class="py-20 bg-white">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-900 mb-4">Mi <span class="text-blue-600">Curriculum</span></h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">Para más detalles sobre mi formación, experiencia y habilidades, descarga mi currículun.</p>
+                <div class="w-20 h-1 bg-blue-600 mx-auto"></div>
+            </div>
+            
+            <div class="bg-gray-50 rounded-xl p-8 mb-8 text-center">
+                <div class="space-y-4">
+                    <svg class="mx-auto h-12 w-12 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
+                    </svg>
+                    <p class="text-gray-600">Descarga mi curriculum profesional</p>
+                    <button id="downloadCvMainBtn" class="bg-blue-600 text-white px-6 py-2 rounded-md hover:bg-blue-700">
+                        Descargar CV
+                    </button>
+                </div>
+            </div>
+            
+            <!-- CV Preview -->
+            <div id="cvPreview" class="bg-gray-50 rounded-xl p-8">
+                <div class="flex items-center justify-between mb-6">
+                    <h3 class="font-medium text-gray-900">Curriculum Actual</h3>
+                    <button id="downloadCvBtn" class="text-blue-600 hover:text-blue-800 flex items-center">
+                        <svg class="w-5 h-5 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                        </svg>
+                        Descargar
+                    </button>
+                </div>
+                
+                <div class="flex items-center p-4 bg-white rounded-lg border border-gray-200">
+                    <svg class="w-10 h-10 text-gray-400 mr-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
+                    </svg>
+                    <div>
+                        <h4 id="cvFileName" class="font-medium text-gray-900 mb-1">Nombre_del_archivo.pdf</h4>
+                        <p id="cvFileSize" class="text-xs text-gray-500">2.4 MB - Subido el 15 de julio, 2023</p>
+                    </div>
+                </div>
+                <div class="mt-4">
+                    <iframe id="cvPreviewIframe" src="" class="w-full h-96 rounded-md border border-gray-300" frameborder="0"></iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contacto" class="py-20 gradient-bg text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="md:flex">
+                <div class="md:w-1/2 mb-12 md:mb-0 md:pr-10">
+                    <h2 class="text-3xl font-bold mb-6">Contáctame</h2>
+                    <p class="mb-8 text-gray-100">Si estás interesado en mi perfil profesional o tienes alguna consulta, no dudes en ponerte en contacto conmigo.</p>
+                    
+                    <div class="space-y-4">
+                        <div class="flex items-start">
+                            <svg class="w-6 h-6 mr-4 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                            </svg>
+                            <div>
+                                <h4 class="font-medium">Correo Electrónico</h4>
+                                <p class="text-gray-200">javierescool1234@gmail.com</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <svg class="w-6 h-6 mr-4 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                            </svg>
+                            <div>
+                                <h4 class="font-medium">Teléfono</h4>
+                                <p class="text-gray-200">+51 953684107</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <svg class="w-6 h-6 mr-4 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                            </svg>
+                            <div>
+                                <h4 class="font-medium">Ubicación</h4>
+                                <p class="text-gray-200">Lima - san jaun de miraflores - Perú</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-8">
+                        <h4 class="font-medium mb-4">Sígueme en redes sociales:</h4>
+                        <div class="flex space-x-4">
+                            <a href="https://github.com/javiertf50" class="w-10 h-10 rounded-full border border-white flex items-center justify-center hover:bg-white hover:text-blue-600 transition-colors">
+                                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                                </svg>
+                            </a>
+                            <a href="https://www.linkedin.com/in/javier-tacilla-fernandez-914169292/" class="w-10 h-10 rounded-full border border-white flex items-center justify-center hover:bg-white hover:text-blue-600 transition-colors">
+                                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                                </svg>
+                            </a>
+                           
+                        </div>
+                    </div>
+                </div>
+                <div class="md:w-1/2">
+                    <form id="contactForm" class="bg-white rounded-lg shadow-lg p-8">
+                        <div class="mb-6">
+                            <label for="name" class="block text-gray-700 font-medium mb-2">Nombre Completo</label>
+                            <input type="text" id="name" name="name" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600">
+                        </div>
+                        <div class="mb-6">
+                            <label for="email" class="block text-gray-700 font-medium mb-2">Correo Electrónico</label>
+                            <input type="email" id="email" name="email" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600">
+                        </div>
+                        <div class="mb-6">
+                            <label for="subject" class="block text-gray-700 font-medium mb-2">Asunto</label>
+                            <input type="text" id="subject" name="subject" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600">
+                        </div>
+                        <div class="mb-6">
+                            <label for="message" class="block text-gray-700 font-medium mb-2">Mensaje</label>
+                            <textarea id="message" name="message" rows="5" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600"></textarea>
+                        </div>
+                        <button type="submit" class="w-full bg-blue-600 text-white py-3 rounded-md font-medium hover:bg-blue-700 transition-colors">
+                            Enviar Mensaje
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="md:flex md:justify-between">
+                <div class="mb-8 md:mb-0">
+                    <a href="#" class="text-xl font-bold">Mi<span class="text-blue-400"> Portafolio</span></a>
+                    <p class="mt-4 text-gray-400 max-w-md">Soy Javier, un desarrollador apasionado por crear soluciones tecnológicas eficientes y escalables.</p>
+                </div>
+                <div class="grid grid-cols-2 gap-8 sm:grid-cols-3">
+                    <div>
+                        <h3 class="text-sm font-semibold uppercase tracking-wider">Sitio</h3>
+                        <div class="mt-4 space-y-4">
+                            <a href="#inicio" class="block text-gray-400 hover:text-white">Inicio</a>
+                            <a href="#sobre-mi" class="block text-gray-400 hover:text-white">Sobre mí</a>
+                            <a href="#proyectos" class="block text-gray-400 hover:text-white">Proyectos</a>
+                            <a href="#cv" class="block text-gray-400 hover:text-white">Curriculum</a>
+                        </div>
+                    </div>
+                <!---  <div>
+                        <h3 class="text-sm font-semibold uppercase tracking-wider">Legal</h3>
+                        <div class="mt-4 space-y-4">
+                            <a href="#" class="block text-gray-400 hover:text-white">Política de Privacidad</a>
+                            <a href="#" class="block text-gray-400 hover:text-white">Términos</a>
+                            <a href="#" class="block text-gray-400 hover:text-white">Cookies</a>
+                        </div>
+                    </div> -->
+                    <div>
+                        <h3 class="text-sm font-semibold uppercase tracking-wider">Contacto</h3>
+                        <div class="mt-4 space-y-4">
+                            <a href="https://mail.google.com/mail/?view=cm&to=javierescool1234@gmail.com&su=Consulta sobre tu portafolio&body=Hola Javier,%0A%0AMe interesa tu trabajo." 
+                        class="block text-gray-400 hover:text-white">
+                             javierescool1234@gmail.com
+                            </a>
+
+                            <a 
+                                href="https://wa.me/51953684107" 
+                                class="block text-gray-400 hover:text-white"
+                                target="_blank"
+                    >
+                    +51 953684107
+                    </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-12 pt-8 border-t border-gray-800">
+                <p class="text-gray-400 text-center text-sm">&copy; 2025 - pagina web Cv Jv</p>
+            </div>
+        </div>
+    </footer>
+
+    
+
+    <script>
+        // Mobile menu toggle
+        document.getElementById('mobile-menu-button').addEventListener('click', function() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        });
+
+        // CV Download functionality
+        const downloadCvMainBtn = document.getElementById('downloadCvMainBtn');
+        const cvPreview = document.getElementById('cvPreview');
+        const downloadCvBtn = document.getElementById('downloadCvBtn');
+        
+        // Link to your CV file - replace with your actual file path
+        const cvFileUrl = 'cv/JavierTacillaFernandez.pdf';
+        const cvFileName = 'JavierTacillaFernandez.pdf';
+        
+        // Setup download buttons
+        downloadCvMainBtn.addEventListener('click', downloadCV);
+        if (downloadCvBtn) {
+            downloadCvBtn.addEventListener('click', downloadCV);
+        }
+        
+        function downloadCV() {
+            const a = document.createElement('a');
+            a.href = cvFileUrl;
+            a.download = cvFileName;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+        }
+
+        // Project Modal Handling
+        const addProjectBtn = document.getElementById('addProjectBtn');
+        const projectModal = document.getElementById('projectModal');
+        const closeModalBtn = document.getElementById('closeModalBtn');
+        const cancelProjectBtn = document.getElementById('cancelProjectBtn');
+        const imageUploadBtn = document.getElementById('imageUploadBtn');
+        const projectImageInput = document.getElementById('projectImageInput');
+        const projectImageName = document.getElementById('projectImageName');
+        const projectForm = document.getElementById('projectForm');
+        
+        let projectImageFile = null;
+
+        // Show modal
+        addProjectBtn.addEventListener('click', function() {
+            projectModal.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        });
+
+        // Hide modal
+        function hideModal() {
+            projectModal.classList.add('hidden');
+            document.body.style.overflow = '';
+        }
+
+        closeModalBtn.addEventListener('click', hideModal);
+        cancelProjectBtn.addEventListener('click', hideModal);
+
+        // Click outside modal to close
+        projectModal.addEventListener('click', function(e) {
+            if (e.target === projectModal) {
+                hideModal();
+            }
+        });
+
+        // Handle project image upload
+        imageUploadBtn.addEventListener('click', function() {
+            projectImageInput.click();
+        });
+
+        projectImageInput.addEventListener('change', function() {
+            if (this.files.length > 0) {
+                projectImageFile = this.files[0];
+                projectImageName.textContent = projectImageFile.name.length > 30 ? 
+                    projectImageFile.name.substring(0, 27) + '...' : projectImageFile.name;
+                projectImageName.classList.remove('hidden');
+            }
+        });
+
+        // Handle project form submission
+        projectForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const name = document.getElementById('projectName').value;
+            const desc = document.getElementById('projectDesc').value;
+            const tech = document.getElementById('projectTech').value;
+            const demo = document.getElementById('projectDemo').value;
+            const code = document.getElementById('projectCode').value;
+            
+            if (!name || !desc) {
+                alert('Por favor, completa al menos el nombre y la descripción del proyecto.');
+                return;
+            }
+            
+            // Create new project card
+            const projectCardsContainer = document.querySelector('#proyectos .grid');
+            
+            const techArray = tech.split(',').map(t => t.trim()).filter(t => t);
+            const techBadges = techArray.map(t => 
+                `<span class="skill-badge px-3 py-1 rounded-full text-xs">${t}</span>`
+            ).join('');
+            
+            const newProject = document.createElement('div');
+            newProject.className = 'project-card bg-white rounded-lg shadow-md overflow-hidden transition-all duration-300';
+            newProject.innerHTML = `
+                <div class="h-48 overflow-hidden">
+                    ${projectImageFile ? 
+                        `<img src="${URL.createObjectURL(projectImageFile)}" alt="${name} preview" class="w-full h-full object-cover">` : 
+                        `<img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/a8357311-bbe4-4dd9-b692-5311163c6a33.png" alt="Placeholder image for ${name}" class="w-full h-full object-cover">`
+                    }
+                </div>
+                <div class="p-6">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-2">${name}</h3>
+                    <p class="text-gray-600 mb-4">${desc}</p>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        ${techBadges}
+                    </div>
+                    <div class="flex space-x-3">
+                        ${demo ? `<a href="${demo}" target="_blank" class="text-blue-600 hover:text-blue-800 text-sm font-medium">Ver Demo</a>` : ''}
+                        ${code ? `<a href="${code}" target="_blank" class="text-gray-500 hover:text-gray-700 text-sm font-medium">Código Fuente</a>` : ''}
+                    </div>
+                </div>
+            `;
+            
+            projectCardsContainer.insertBefore(newProject, projectCardsContainer.firstChild);
+            
+            // Reset form and hide modal
+            projectForm.reset();
+            projectImageName.classList.add('hidden');
+            projectImageFile = null;
+            hideModal();
+            
+            // Scroll to new project
+            newProject.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        });
+
+        // Form submission handler for contact form with database connection
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const form = this;
+            const formData = new FormData(form);
+            const url = 'tu_script_de_procesamiento.php'; // Replace with your backend script
+            
+            fetch(url, {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => {
+                if (!response.ok) throw new Error('Error en la red');
+                return response.json();
+            })
+            .then(data => {
+                if (data.success) {
+                    alert('Gracias por tu mensaje. ¡Me pondré en contacto contigo pronto!');
+                    form.reset();
+                } else {
+                    alert('Hubo un error: ' + (data.message || 'Por favor inténtalo de nuevo'));
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Ocurrió un error al enviar el formulario. Por favor inténtalo de nuevo.');
+            });
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                    
+                    // Close mobile menu if open
+                    const mobileMenu = document.getElementById('mobile-menu');
+                    if (!mobileMenu.classList.contains('hidden')) {
+                        mobileMenu.classList.add('hidden');
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
